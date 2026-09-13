@@ -2,11 +2,11 @@ import { z } from "zod";
 
 export const studentRegisterSchema = z
   .object({
-    name: z.string().min(3, "Name is required"),
+    name: z.string().min(1, "Name is required").min(3, "Name must be at least 3 characters"),
 
-    email: z.string().email("Enter a valid email"),
+    email: z.string().min(1, "Email is required").email("Enter a valid email"),
 
-    mobile: z.string().regex(/^[6-9]\d{9}$/, "Enter a valid mobile number"),
+    mobile: z.string().min(1, "Mobile number is required").regex(/^[0-9]\d{9}$/, "Enter a valid mobile number"),
 
     rollNumber: z.string().min(1, "Roll number is required"),
 

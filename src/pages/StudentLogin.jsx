@@ -23,9 +23,17 @@ const StudentLogin = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log("Student Login Data:", data);
+    // if(data.email=="ankit122@gmail.com" && data.password=="1232124"){
+    //   alert("Login Successfully!");
+    //   navigate("/student-dashboard");
+      
+    //   console.log("Student Login Data:", data);
+    // }
+    // else{
+    //   alert("Please, Enter register email and password");
+    // }
 
-    // Temporary navigation
+    console.log("Student Login Data:", data);
     navigate("/student-dashboard");
   };
 

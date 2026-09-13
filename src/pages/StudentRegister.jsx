@@ -549,7 +549,7 @@ import { Link } from 'react-router-dom';
 
 import { studentRegisterSchema } from "../schemas/studentSchema";
 
-import { GraduationCap, ArrowLeft, ArrowRight, EyeOff, Eye} from "lucide-react";
+import { GraduationCap, ArrowLeft, ArrowRight, EyeOff, Eye, ShieldCheck } from "lucide-react";
 
 const StudentRegister = () => {
     const [showPassword, setShowPassword] = useState(false);
@@ -557,235 +557,278 @@ const StudentRegister = () => {
     const {
         register,
         handleSubmit,
-        formState: {errors},
-    } = useForm({resolver: zodResolver(studentRegisterSchema)});
+        formState: { errors },
+    } = useForm({ resolver: zodResolver(studentRegisterSchema) });
 
-    const onsubmit = (data) =>{
-        console.log("Student Data",data);
-        
+    const onsubmit = (data) => {
+        console.log("Student Data", data);
+
     };
-  return (
-    <div className='min-h-screen flex justify-center px-4 py-8'>
-        <div className='w-full max-w-5xl bg-white rounded-3xl shadow-xl overflow-hidden grid md:grid-cols-2'>
-            {/*Left Side  */}
-            <div className='hidden lg:flex flex-col justify-start bg-blue-700 text-slate-100 p-10 rounded'>
-                <div className='flex items-center justify-start gap-2 mb-5 '>
-                    <div className='p-2 bg-blue-600 rounded-lg'>
-                        <GraduationCap size={32} />
+    return (
+        <div className='min-h-screen flex justify-center px-4 py-8 bg-pink-100'>
+            <div className='w-full max-w-5xl bg-white rounded-3xl shadow-xl overflow-hidden grid md:grid-cols-2'>
+                {/*Left Side  */}
+                <div className='hidden lg:flex flex-col justify-between gap-5 bg-blue-700 text-slate-100 p-10 rounded'>
+                    <div>
+                        <div className="flex items-center gap-3 mb-10">
+                            <div className="bg-white/15 p-3 rounded-xl">
+                                <GraduationCap size={32} />
+                            </div>
+
+                            <div>
+                                <h1 className="text-xl font-bold">
+                                    College Portal
+                                </h1>
+                                <p className="text-blue-200 text-sm">
+                                    Student Management System
+                                </p>
+                            </div>
+                        </div>
+
+                        <h2 className="text-4xl font-bold leading-tight">
+                            Create your
+                            <br />
+                            Student Account
+                        </h2>
+
+                        <p className="mt-5 text-blue-100 leading-7">
+                            Register yourself to access attendance, notices, academic information and other college services from one place.
+                        </p>
+                        <ul className='list-disc pl-5 text-white text-sm my-5'>
+                            <li className='my-3'>Secure student account</li>
+                            <li className='my-3'>Access academic information</li>
+                            <li className='my-3'>Manage assignments and notices</li>
+                        </ul>
                     </div>
-                    <div className='flex flex-col'>
-                        <h1 className='text-2xl font-bold'>College Portal</h1>
-                        <p className='text-gray-300 text-sm'>Student Management System</p>
+                    <div className='flex items-center gap-3 text-sm text-blue-100'>
+                        <ShieldCheck size={20} />
+                        <span>Secure Student Portal</span>
                     </div>
                 </div>
-                <div className='flex flex-col gap-4'>
-                    <h1 className='text-3xl font-bold'>Create your<br />Student Account</h1>
-                    <p className='text-gray-300 text-base'>Register yourself to access attendance, notices, academic information and other college services from one place.</p>
-                    <ul className='text-gray-300 text-sm'>
-                        <li>Secure student account</li>
-                        <li>Access academic information</li>
-                        <li>Manage assignments and notices</li>
-                    </ul>
-                </div>
-            </div>
 
-            {/* Right Side */}
-            <div>
-                <div className='p-8'> 
-                    {/* header */}
-                    <div className='lg:hidden flex items-center justify-start gap-3 mb-5 rounded-lg'>
-                        <div className='p-3 bg-blue-100 rounded-lg'>
-                            <GraduationCap size={32} color='blue' />
-                        </div>
-                        <div className='flex flex-col'>
-                            <h1 className='text-xl font-bold'>College Portal</h1>
-                            <p className='text-gray-500 text-xs'>Student Management System</p>
-                        </div>
-                    </div>  
-
-                    <div className='mb-5'>
-                        <h1 className='text-3xl font-bold mb-2'>Student Registration</h1>
-                        <p className='text-gray-500 text-base'>Create your student account</p>
-                    </div>
-
-                    <form onSubmit={handleSubmit(onsubmit)}>
-                        {/* fullname + email */}
-                        <div className='grid sm:grid-cols-2 gap-4 mb-3'>
-                            {/* fullname */}
-                            <div>
-                                <label className='text-sm font-medium'>Full Name</label>
-                                <input 
-                                    placeholder='Enter full name'
-                                    className='w-full mt-2 px-4 py-3  border border-gray-300 rounded-lg'
-                                    {...register("name")}
-                                />
-                                {errors.name &&(
-                                    <p className='text-red-500 text-sm'>
-                                        {errors.name.message}
-                                    </p>
-                                )}
+                {/* Right Side */}
+                <div>
+                    <div className='p-8'>
+                        {/* header */}
+                        <div className='lg:hidden flex items-center justify-start gap-3 mb-5 rounded-lg'>
+                            <div className='p-3 bg-blue-100 rounded-lg'>
+                                <GraduationCap size={32} color='blue' />
                             </div>
-                            {/* email */}
-                            <div>
-                                <label className='text-sm font-medium'>Email Address</label>
-                                <input 
-                                    placeholder='Enter email'
-                                    className='w-full mt-2 px-4 py-3 border border-gray-300 rounded-lg'
-                                    {...register("email")}
-                                />
-                                {errors.email &&(
-                                    <p className='text-red-500 text-sm'>
-                                        {errors.email.message}
-                                    </p>
-                                )}
+                            <div className='flex flex-col'>
+                                <h1 className='text-xl font-bold'>College Portal</h1>
+                                <p className='text-gray-500 text-xs'>Student Management System</p>
                             </div>
                         </div>
 
-                        {/* mobile + Roll */}
-                        <div className='grid sm:grid-cols-2 gap-4 mb-3'>
-                            {/* mobile */}
-                            <div>
-                                <label className='text-sm font-medium'>Mobile Number</label>
-                                <input 
-                                    placeholder='10 digit mobile'
-                                    className='w-full mt-2 px-4 py-3 border border-gray-300 rounded-lg'
-                                    {...register("mobile")}
-                                />
-                                {errors.mobile &&(
-                                    <p className='text-red-500 text-sm'>
-                                        {errors.mobile.message}
-                                    </p>
-                                )}
-                            </div>
-                            {/* rollNumber */}
-                            <div>
-                                <label className='text-sm font-medium'>Roll Number</label>
-                                <input 
-                                    placeholder='Enter roll number'
-                                    className='w-full mt-2 px-4 py-3 border border-gray-300 rounded-lg'
-                                    {...register("rollNumber")}
-                                />
-                                {errors.rollNumber &&(
-                                    <p className='text-red-500 text-sm'>
-                                        {errors.rollNumber.message}
-                                    </p>
-                                )}
-                            </div>
-                        </div>
-                        
-                        {/* university + course */}
-                        <div className='grid sm:grid-cols-2 gap-4 mb-3'>
-                            {/* university */}
-                            <div>
-                                <label className='text-sm font-medium'>University Number</label>
-                                <input 
-                                    placeholder='University roll number'
-                                    className='w-full mt-2 px-4 py-3 border border-gray-300 rounded-lg'
-                                    {...register("university")}
-                                />
-                                {errors.university &&(
-                                    <p className='text-red-500 text-sm'>
-                                        {errors.university.message}
-                                    </p>
-                                )}
-                            </div>
-                            {/* course */}
-                            <div>
-                                <label className='text-sm font-medium'>Course</label>
-                                <select 
-                                    className='w-full mt-2 px-4 py-3 border border-gray-300 rounded-lg'
-                                    {...register("course")}
-                                >
-                                    <option value="">Select Course</option>
-                                    <option value="BA">BA</option>
-                                    <option value="BBA">BBA</option>
-                                    <option value="BCA">BCA</option>
-                                </select>
-                                {errors.course &&(
-                                    <p className='text-red-500 text-sm'>
-                                        {errors.course.message}
-                                    </p>
-                                )}
-                            </div>
+                        <div className='mb-5'>
+                            <h1 className='text-3xl font-bold mb-2'>Student Registration</h1>
+                            <p className='text-gray-500 text-base'>Create your student account</p>
                         </div>
 
-                        {/* Date of birth */}
-                        <div>
-                            <label className='text-sm font-medium'>Date of Birth</label>
-                            <input 
-                                type='date'
-                                className='w-full my-2 px-4 py-3 border border-gray-300 rounded-lg'
-                                {...register("dob")}
-                            />
-                            {errors.dob &&(
-                                <p className='text-red-500 text-sm'>
-                                    {errors.dob.message}
-                                </p>
-                            )}
-                        </div>
-                        {/* password */}
-                        <div className='my-2'>
-                            <label className='text-sm font-medium'>Password</label>
-                            <div className='relative'>
-                            <input 
-                                type={showPassword ?"text":'password'}
-                                placeholder='Create password'
-                                className='w-full my-2 px-4 py-3 border border-gray-300 rounded-lg'
-                                {...register("password")}
-                            />
-                            <button 
-                                type='button'
-                                onClick={()=>
-                                    setShowPassword(!showPassword)
-                                }
-                                className='absolute right-3 top-1/2 -translate-y-1/2 text-slate-400'
-                            >
-                                {showPassword ?(<EyeOff size={18} />):(<Eye size={18} />)}
-                            </button>
+                        <form onSubmit={handleSubmit(onsubmit)}>
+                            {/* fullname + email */}
+                            <div className='grid sm:grid-cols-2 gap-4 mb-3'>
+                                {/* fullname */}
+                                <div>
+                                    <label className='text-sm font-medium'>Full Name</label>
+                                    <input
+                                        placeholder='Enter full name'
+                                        className='w-full mt-2 px-4 py-3  border border-gray-300 rounded-lg'
+                                        {...register("name")}
+                                    />
+                                    {errors.name && (
+                                        <p className='text-red-500 text-sm'>
+                                            {errors.name.message}
+                                        </p>
+                                    )}
+                                </div>
+                                {/* email */}
+                                <div>
+                                    <label className='text-sm font-medium'>Email Address</label>
+                                    <input
+                                        placeholder='Enter email'
+                                        className='w-full mt-2 px-4 py-3 border border-gray-300 rounded-lg'
+                                        {...register("email")}
+                                    />
+                                    {errors.email && (
+                                        <p className='text-red-500 text-sm'>
+                                            {errors.email.message}
+                                        </p>
+                                    )}
+                                </div>
                             </div>
-                            {errors.password &&(
-                                <p className='text-red-500 text-sm'>
-                                    {errors.password.message}
-                                </p>
-                            )}
-                        </div>
-                        {/* Confirm Password */}
-                        <div className='my-2'>
-                            <label className='text-sm font-medium'>Confirm Password</label>
-                            <div className='relative'>
-                                <input 
-                                    type={showConfirmPassword ? "text":"password"}
-                                    placeholder='Confirm password'
+
+                            {/* mobile + Roll */}
+                            <div className='grid sm:grid-cols-2 gap-4 mb-3'>
+                                {/* mobile */}
+                                <div>
+                                    <label className='text-sm font-medium'>Mobile Number</label>
+                                    <input
+                                        placeholder='10 digit mobile'
+                                        className='w-full mt-2 px-4 py-3 border border-gray-300 rounded-lg'
+                                        {...register("mobile")}
+                                    />
+                                    {errors.mobile && (
+                                        <p className='text-red-500 text-sm'>
+                                            {errors.mobile.message}
+                                        </p>
+                                    )}
+                                </div>
+                                {/* rollNumber */}
+                                <div>
+                                    <label className='text-sm font-medium'>Roll Number</label>
+                                    <input
+                                        placeholder='Enter roll number'
+                                        className='w-full mt-2 px-4 py-3 border border-gray-300 rounded-lg'
+                                        {...register("rollNumber")}
+                                    />
+                                    {errors.rollNumber && (
+                                        <p className='text-red-500 text-sm'>
+                                            {errors.rollNumber.message}
+                                        </p>
+                                    )}
+                                </div>
+                            </div>
+
+                            {/* university + course */}
+                            <div className='grid sm:grid-cols-2 gap-4 mb-3'>
+                                {/* university */}
+                                <div>
+                                    <label className='text-sm font-medium'>University Number</label>
+                                    <input
+                                        placeholder='University roll number'
+                                        className='w-full mt-2 px-4 py-3 border border-gray-300 rounded-lg'
+                                        {...register("university")}
+                                    />
+                                    {errors.university && (
+                                        <p className='text-red-500 text-sm'>
+                                            {errors.university.message}
+                                        </p>
+                                    )}
+                                </div>
+                                {/* course */}
+                                <div>
+                                    <label className='text-sm font-medium'>Course</label>
+                                    <select
+                                        className='w-full mt-2 px-4 py-3 border border-gray-300 rounded-lg'
+                                        {...register("course")}
+                                    >
+                                        <option value="">Select Course</option>
+                                        <option value="BA">BA</option>
+                                        <option value="BBA">BBA</option>
+                                        <option value="BCA">BCA</option>
+                                    </select>
+                                    {errors.course && (
+                                        <p className='text-red-500 text-sm'>
+                                            {errors.course.message}
+                                        </p>
+                                    )}
+                                </div>
+                            </div>
+
+                            {/* Date of birth */}
+                            <div>
+                                <label className='text-sm font-medium'>Date of Birth</label>
+                                <input
+                                    type='date'
                                     className='w-full my-2 px-4 py-3 border border-gray-300 rounded-lg'
-                                    {...register("confirmPassword")}
+                                    {...register("dob")}
                                 />
+                                {errors.dob && (
+                                    <p className='text-red-500 text-sm'>
+                                        {errors.dob.message}
+                                    </p>
+                                )}
+                            </div>
+                            {/* password */}
+                            <div className='my-2'>
+                                <label className='text-sm font-medium'>Password</label>
+                                <div className='relative'>
+                                    <input
+                                        type={showPassword ? "text" : 'password'}
+                                        placeholder='Create password'
+                                        className='w-full my-2 px-4 py-3 border border-gray-300 rounded-lg'
+                                        {...register("password")}
+                                    />
+                                    <button
+                                        type='button'
+                                        onClick={() =>
+                                            setShowPassword(!showPassword)
+                                        }
+                                        className='absolute right-3 top-1/2 -translate-y-1/2 text-slate-400'
+                                    >
+                                        {showPassword ? (<EyeOff size={18} />) : (<Eye size={18} />)}
+                                    </button>
+                                </div>
+                                {errors.password && (
+                                    <p className='text-red-500 text-sm'>
+                                        {errors.password.message}
+                                    </p>
+                                )}
+                            </div>
+                            {/* Confirm Password */}
+                            <div className='my-2'>
+                                <label className='text-sm font-medium'>Confirm Password</label>
+                                <div className='relative'>
+                                    <input
+                                        type={showConfirmPassword ? "text" : "password"}
+                                        placeholder='Confirm password'
+                                        className='w-full my-2 px-4 py-3 border border-gray-300 rounded-lg'
+                                        {...register("confirmPassword")}
+                                    />
+                                    <button
+                                        type='button'
+                                        onClick={() =>
+                                            setShowConfirmPassword(!showConfirmPassword)}
+                                        className='absolute right-3 top-1/2 -translate-y-1/2 text-slate-400'
+                                    >
+                                        {showConfirmPassword ? (<EyeOff size={18} />) : (<Eye size={18} />)}
+                                    </button>
+                                </div>
+                                {errors.confirmPassword && (
+                                    <p className='text-red-500 text-sm'>
+                                        {errors.confirmPassword.message}
+                                    </p>
+                                )}
+                            </div>
+
+                            {/* Terms */}
+                            <div className="flex items-start gap-2 pb-2">
+
+                                <input
+                                    type="checkbox"
+                                    className="w-4 h-4 mt-1 accent-blue-600"
+                                    {...register("terms", {
+                                        required: "You must accept the terms",
+                                    })}
+                                />
+
+                                <p className="text-sm text-slate-600">
+                                    I agree to the{" "}
+                                    <span className="text-blue-600 font-medium">
+                                        Terms & Conditions
+                                    </span>
+                                </p>
+
+                            </div>
+                            {errors.terms && (
+                                <p className="text-red-500 text-xs">
+                                    {errors.terms.message}
+                                </p>
+                            )}
+
+                            {/* submit button */}
+                            <div className='my-2'>
                                 <button
-                                    type='button'
-                                    onClick={()=>
-                                        setShowConfirmPassword(!showConfirmPassword)}
-                                    className='absolute right-3 top-1/2 -translate-y-1/2 text-slate-400'
+                                    type="submit"
+                                    // onClick={onSubmit}
+                                    className='w-full px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl flex items-center justify-center gap-2'
                                 >
-                                    {showConfirmPassword ? (<EyeOff size={18} />):(<Eye size={18} />)}
+                                    Create Account
+                                    <ArrowRight size={17} />
                                 </button>
                             </div>
-                            {errors.confirmPassword &&(
-                                <p className='text-red-500 text-sm'>
-                                    {errors.confirmPassword.message}
-                                </p>
-                            )}
-                        </div>
-
-                        {/* submit button */}
-                        <div className='my-2'>
-                            <button 
-                                type="submit"
-                                // onClick={onSubmit}
-                                className='w-full px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl flex items-center justify-center gap-2'
-                            >
-                                Create Account
-                                <ArrowRight size={17} />
-                            </button>
-                        </div>
+                        </form>
                         <div className='flex justify-center mt-6'>
                             <Link to="/"
                                 className='flex items-center gap-2 text-blue-600 font-semibold text-sm hover:text-blue-700'
@@ -793,13 +836,12 @@ const StudentRegister = () => {
                                 <ArrowLeft size={17} />
                                 Back to Student Login
                             </Link>
-                        </div>
-                    </form>
+                        </div> 
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-  )
+    )
 }
 
 export default StudentRegister

@@ -2,16 +2,41 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import StudentLogin from "./pages/StudentLogin";
 import StudentRegister from "./pages/StudentRegister";
-
-function StudentDashboard() {
-  return (
-    <div className="min-h-screen flex items-center justify-center text-3xl font-bold">
-      Student Dashboard
-    </div>
-  );
-}
+import StudentDashboard from "./pages/StudentDashboard";
+// import ExamForm from "./pages/ExamForm";
+// import ExamPreview from "./pages/FormPreview";
+// import Payment from "./pages/Payment";
+// import SubmissionSuccess from "./pages/SubmissionSuccess";
 
 function App() {
+
+  // const formData = {
+  //   studentName: "Ankit Kumar",
+  //   fatherName: "Rajesh Kumar",
+  //   rollNumber: "BCA2026001",
+  //   universityNumber: "UNI202600123",
+  //   dateOfBirth: "2004-08-15",
+
+  //   email: "ankit@example.com",
+  //   mobile: "9876543210",
+
+  //   course: "BCA",
+  //   semester: "6",
+  //   examType: "Regular",
+
+  //   subjects: [
+  //     "Web Development",
+  //     "Java Programming",
+  //     "Database Management",
+  //     "Computer Networks",
+  //   ],
+
+  //   address: "123 Main Road",
+  //   city: "Delhi",
+  //   state: "Delhi",
+  //   pincode: "110001",
+  // };
+
   return (
     <BrowserRouter>
       <Routes>
@@ -26,6 +51,26 @@ function App() {
           path="/student-register"
           element={<StudentRegister />}
         />
+
+        {/* <Route
+          path="/exam-form"
+          element={<ExamForm />}
+        />
+
+        <Route
+          path="/form-preview"
+          element={<ExamPreview formData={formData}/>}
+        />
+
+        <Route 
+          path="/payment"
+          element={<Payment formData={formData}/>}
+        />
+
+        <Route 
+          path="/submission"
+          element={<SubmissionSuccess formData={formData}/>}
+        /> */}
 
       </Routes>
     </BrowserRouter>
