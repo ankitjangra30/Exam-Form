@@ -3,6 +3,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import StudentLogin from "./pages/StudentLogin";
 import StudentRegister from "./pages/StudentRegister";
 import StudentDashboard from "./pages/StudentDashboard";
+import AdminRegister from "./pages/AdminRegister";
+import AdminLogin from "./pages/AdminLogin";
 // import ExamForm from "./pages/ExamForm";
 // import ExamPreview from "./pages/FormPreview";
 // import Payment from "./pages/Payment";
@@ -71,6 +73,16 @@ function App() {
           path="/submission"
           element={<SubmissionSuccess formData={formData}/>}
         /> */}
+
+        <Route 
+          path="/admin/register"
+          element={<AdminRegister />}
+        />
+
+        <Route 
+          path="/admin/login"
+          element={<AdminLogin />}
+        />
 
       </Routes>
     </BrowserRouter>

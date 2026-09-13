@@ -6,7 +6,7 @@ export const studentRegisterSchema = z
 
     email: z.string().min(1, "Email is required").email("Enter a valid email"),
 
-    mobile: z.string().min(1, "Mobile number is required").regex(/^[0-9]\d{9}$/, "Enter a valid mobile number"),
+    mobile: z.string().min(1, "Mobile number is required").regex(/^[6-9]\d{9}$/, "Enter a valid 10 digit mobile number"),
 
     rollNumber: z.string().min(1, "Roll number is required"),
 
@@ -20,9 +20,9 @@ export const studentRegisterSchema = z
 
     confirmPassword: z.string().min(1, "Please confirm your password"),
 
-    // terms: z.boolean().refine((value) => value === true, {
-    //     message: "You must accept the terms",
-    //   }),
+    terms: z.boolean().refine((value) => value === true, {
+        message: "You must accept the terms",
+      }),
   })
   .refine(
     (data) => data.password === data.confirmPassword,

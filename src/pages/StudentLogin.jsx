@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import {
   GraduationCap,
   Mail,
-  Lock,
+  LockKeyhole,
   Eye,
   EyeOff,
   ArrowRight,
@@ -38,7 +38,7 @@ const StudentLogin = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-100 flex items-center justify-center px-4 py-8">
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4 py-8">
 
       <div className="w-full max-w-5xl bg-white rounded-3xl shadow-xl overflow-hidden grid md:grid-cols-2">
 
@@ -120,7 +120,7 @@ const StudentLogin = () => {
 
               <div className="relative">
                 <Mail
-                  size={19}
+                  size={18}
                   className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
                 />
 
@@ -166,8 +166,8 @@ const StudentLogin = () => {
               </div>
 
               <div className="relative">
-                <Lock
-                  size={19}
+                <LockKeyhole
+                  size={18}
                   className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
                 />
 
@@ -247,9 +247,9 @@ const StudentLogin = () => {
             </Link>
           </p>
 
-          <p className="text-center text-xs text-slate-400 mt-8">
-            © 2026 College Management System
-          </p>
+          {/* <p className="text-center text-xs text-slate-400 mt-8">
+            © Imperial College Management System 2026
+          </p> */}
 
         </div>
       </div>

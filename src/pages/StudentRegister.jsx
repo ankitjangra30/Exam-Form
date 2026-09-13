@@ -545,27 +545,32 @@
 import React, { useState } from 'react'
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { studentRegisterSchema } from "../schemas/studentSchema";
 
-import { GraduationCap, ArrowLeft, ArrowRight, EyeOff, Eye, ShieldCheck } from "lucide-react";
+import { User, Mail, Phone, Hash, GraduationCap, ArrowLeft, ArrowRight, EyeOff, Eye, ShieldCheck, CalendarDays, LockKeyhole, } from "lucide-react";
 
 const StudentRegister = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    const navigate = useNavigate();
+
     const {
         register,
         handleSubmit,
+        reset,
         formState: { errors },
     } = useForm({ resolver: zodResolver(studentRegisterSchema) });
 
-    const onsubmit = (data) => {
+    const onSubmit = (data) => {
         console.log("Student Data", data);
-
+        alert("Registration Successfully!");
+        reset();
+        navigate("/");
     };
     return (
-        <div className='min-h-screen flex justify-center px-4 py-8 bg-pink-100'>
+        <div className='min-h-screen flex justify-center px-4 py-8 bg-gray-100'>
             <div className='w-full max-w-5xl bg-white rounded-3xl shadow-xl overflow-hidden grid md:grid-cols-2'>
                 {/*Left Side  */}
                 <div className='hidden lg:flex flex-col justify-between gap-5 bg-blue-700 text-slate-100 p-10 rounded'>
@@ -625,101 +630,79 @@ const StudentRegister = () => {
                             <p className='text-gray-500 text-base'>Create your student account</p>
                         </div>
 
-                        <form onSubmit={handleSubmit(onsubmit)}>
+                        <form onSubmit={handleSubmit(onSubmit)}>
                             {/* fullname + email */}
                             <div className='grid sm:grid-cols-2 gap-4 mb-3'>
                                 {/* fullname */}
-                                <div>
-                                    <label className='text-sm font-medium'>Full Name</label>
-                                    <input
-                                        placeholder='Enter full name'
-                                        className='w-full mt-2 px-4 py-3  border border-gray-300 rounded-lg'
-                                        {...register("name")}
-                                    />
-                                    {errors.name && (
-                                        <p className='text-red-500 text-sm'>
-                                            {errors.name.message}
-                                        </p>
-                                    )}
-                                </div>
+                                <InputField
+                                    label="Full Name"
+                                    icon={<User size={19} />}
+                                    placeholder="Enter your full name"
+                                    error={errors.name?.message}
+                                    {...register("name")}
+                                />
                                 {/* email */}
-                                <div>
-                                    <label className='text-sm font-medium'>Email Address</label>
-                                    <input
-                                        placeholder='Enter email'
-                                        className='w-full mt-2 px-4 py-3 border border-gray-300 rounded-lg'
-                                        {...register("email")}
-                                    />
-                                    {errors.email && (
-                                        <p className='text-red-500 text-sm'>
-                                            {errors.email.message}
-                                        </p>
-                                    )}
-                                </div>
+                                <InputField
+                                    label="Email Address"
+                                    icon={<Mail size={19} />}
+                                    type="email"
+                                    placeholder="Enter your email"
+                                    error={errors.email?.message}
+                                    {...register("email")}
+                                />
                             </div>
 
                             {/* mobile + Roll */}
                             <div className='grid sm:grid-cols-2 gap-4 mb-3'>
                                 {/* mobile */}
-                                <div>
-                                    <label className='text-sm font-medium'>Mobile Number</label>
-                                    <input
-                                        placeholder='10 digit mobile'
-                                        className='w-full mt-2 px-4 py-3 border border-gray-300 rounded-lg'
-                                        {...register("mobile")}
-                                    />
-                                    {errors.mobile && (
-                                        <p className='text-red-500 text-sm'>
-                                            {errors.mobile.message}
-                                        </p>
-                                    )}
-                                </div>
+                                <InputField
+                                    label="Mobile Number"
+                                    icon={<Phone size={19} />}
+                                    placeholder="10 digit mobile"
+                                    error={errors.mobile?.message}
+                                    {...register("mobile")}
+                                />
+                                
                                 {/* rollNumber */}
-                                <div>
-                                    <label className='text-sm font-medium'>Roll Number</label>
-                                    <input
-                                        placeholder='Enter roll number'
-                                        className='w-full mt-2 px-4 py-3 border border-gray-300 rounded-lg'
-                                        {...register("rollNumber")}
-                                    />
-                                    {errors.rollNumber && (
-                                        <p className='text-red-500 text-sm'>
-                                            {errors.rollNumber.message}
-                                        </p>
-                                    )}
-                                </div>
+                                <InputField
+                                    label="Roll Number"
+                                    icon={<Hash size={19} />}
+                                    placeholder="Enter roll number"
+                                    error={errors.rollNumber?.message}
+                                    {...register("rollNumber")}
+                                />
+                                
                             </div>
 
                             {/* university + course */}
                             <div className='grid sm:grid-cols-2 gap-4 mb-3'>
                                 {/* university */}
-                                <div>
-                                    <label className='text-sm font-medium'>University Number</label>
-                                    <input
-                                        placeholder='University roll number'
-                                        className='w-full mt-2 px-4 py-3 border border-gray-300 rounded-lg'
-                                        {...register("university")}
-                                    />
-                                    {errors.university && (
-                                        <p className='text-red-500 text-sm'>
-                                            {errors.university.message}
-                                        </p>
-                                    )}
-                                </div>
+                                <InputField
+                                    label="University Number"
+                                    icon={<Hash size={19} />}
+                                    placeholder="Enter University roll number"
+                                    error={errors.university?.message}
+                                    {...register("university")}
+                                />
                                 {/* course */}
                                 <div>
-                                    <label className='text-sm font-medium'>Course</label>
+                                    <label className="block text-sm font-semibold text-slate-700 mb-2">Course</label>
+                                    <div className='relative'>
+                                    <GraduationCap size={20}
+                                        className='absolute left-3 top-1/2 -translate-y-1/2 text-slate-400'
+                                    />
                                     <select
-                                        className='w-full mt-2 px-4 py-3 border border-gray-300 rounded-lg'
                                         {...register("course")}
+                                        className='w-full pl-10 pr-4 py-3 border rounded-xl outline-none transition border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 text-slate-800'
                                     >
                                         <option value="">Select Course</option>
                                         <option value="BA">BA</option>
                                         <option value="BBA">BBA</option>
                                         <option value="BCA">BCA</option>
                                     </select>
+                                    </div>
                                     {errors.course && (
-                                        <p className='text-red-500 text-sm'>
+                                        <p className='text-red-500 text-xs mt-1'>
                                             {errors.course.message}
                                         </p>
                                     )}
@@ -727,73 +710,35 @@ const StudentRegister = () => {
                             </div>
 
                             {/* Date of birth */}
-                            <div>
-                                <label className='text-sm font-medium'>Date of Birth</label>
-                                <input
-                                    type='date'
-                                    className='w-full my-2 px-4 py-3 border border-gray-300 rounded-lg'
-                                    {...register("dob")}
-                                />
-                                {errors.dob && (
-                                    <p className='text-red-500 text-sm'>
-                                        {errors.dob.message}
-                                    </p>
-                                )}
-                            </div>
+                            <InputField
+                                label="Date of Birth"
+                                icon={<CalendarDays size={19} />}
+                                type='date'
+                                error={errors.dob?.message}
+                                {...register("dob")}
+                            />
+
                             {/* password */}
-                            <div className='my-2'>
-                                <label className='text-sm font-medium'>Password</label>
-                                <div className='relative'>
-                                    <input
-                                        type={showPassword ? "text" : 'password'}
-                                        placeholder='Create password'
-                                        className='w-full my-2 px-4 py-3 border border-gray-300 rounded-lg'
-                                        {...register("password")}
-                                    />
-                                    <button
-                                        type='button'
-                                        onClick={() =>
-                                            setShowPassword(!showPassword)
-                                        }
-                                        className='absolute right-3 top-1/2 -translate-y-1/2 text-slate-400'
-                                    >
-                                        {showPassword ? (<EyeOff size={18} />) : (<Eye size={18} />)}
-                                    </button>
-                                </div>
-                                {errors.password && (
-                                    <p className='text-red-500 text-sm'>
-                                        {errors.password.message}
-                                    </p>
-                                )}
-                            </div>
+                            <PasswordField
+                                label="Password"
+                                placeholder="Enter your password"
+                                show={showPassword}
+                                setShow={setShowPassword}
+                                error={errors.password?.message}
+                                {...register("password")}
+                            />
                             {/* Confirm Password */}
-                            <div className='my-2'>
-                                <label className='text-sm font-medium'>Confirm Password</label>
-                                <div className='relative'>
-                                    <input
-                                        type={showConfirmPassword ? "text" : "password"}
-                                        placeholder='Confirm password'
-                                        className='w-full my-2 px-4 py-3 border border-gray-300 rounded-lg'
-                                        {...register("confirmPassword")}
-                                    />
-                                    <button
-                                        type='button'
-                                        onClick={() =>
-                                            setShowConfirmPassword(!showConfirmPassword)}
-                                        className='absolute right-3 top-1/2 -translate-y-1/2 text-slate-400'
-                                    >
-                                        {showConfirmPassword ? (<EyeOff size={18} />) : (<Eye size={18} />)}
-                                    </button>
-                                </div>
-                                {errors.confirmPassword && (
-                                    <p className='text-red-500 text-sm'>
-                                        {errors.confirmPassword.message}
-                                    </p>
-                                )}
-                            </div>
+                            <PasswordField
+                                label="Confirm Password"
+                                placeholder="Confirm your password"
+                                show={showConfirmPassword}
+                                setShow={setShowConfirmPassword}
+                                error={errors.confirmPassword?.message}
+                                {...register("confirmPassword")}
+                            />
 
                             {/* Terms */}
-                            <div className="flex items-start gap-2 pb-2">
+                            <div className="flex items-start gap-2 pt-2 pb-3">
 
                                 <input
                                     type="checkbox"
@@ -821,11 +766,10 @@ const StudentRegister = () => {
                             <div className='my-2'>
                                 <button
                                     type="submit"
-                                    // onClick={onSubmit}
                                     className='w-full px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl flex items-center justify-center gap-2'
                                 >
                                     Create Account
-                                    <ArrowRight size={17} />
+                                    <ArrowRight size={19} />
                                 </button>
                             </div>
                         </form>
@@ -833,15 +777,89 @@ const StudentRegister = () => {
                             <Link to="/"
                                 className='flex items-center gap-2 text-blue-600 font-semibold text-sm hover:text-blue-700'
                             >
-                                <ArrowLeft size={17} />
+                                <ArrowLeft size={19} />
                                 Back to Student Login
                             </Link>
-                        </div> 
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     )
+}
+
+
+// Reusable Input Component
+function InputField({ label, icon, error, ...props }) {
+    return (
+        <div className='pb-1'>
+            <label className="block text-sm font-semibold text-slate-700 mb-2">
+                {label}
+            </label>
+
+            <div className="relative">
+                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">
+                    {icon}
+                </span>
+
+                <input
+                    {...props}
+                    className={`w-full pl-10 pr-4 py-3 border rounded-xl outline-none transition
+                    ${error
+                        ? "border-red-400 focus:ring-2 focus:ring-red-100"
+                        : "border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                    }`}
+                />
+            </div>
+            {error && (
+                <p className="text-red-500 text-xs mt-1">
+                    {error}
+                </p>
+            )}
+        </div>
+    );
+}
+
+// Password Component
+function PasswordField({ label, show, setShow, error, ...props }) {
+    return (
+        <div className='py-2.5'>
+            <label className="block text-sm font-semibold text-slate-700 mb-2">
+                {label}
+            </label>
+
+            <div className="relative">
+                <LockKeyhole size={19}
+                    className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"
+                />
+
+                <input
+                    {...props}
+                    type={show ? "text" : "password"}
+                    className={`w-full pl-10 pr-12 py-3 border rounded-xl outline-none transition
+                    ${error
+                        ? "border-red-400"
+                        : "border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                    }`}
+                />
+
+                <button
+                    type="button"
+                    onClick={() => setShow(!show)}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400"
+                >
+                    {show ? <EyeOff size={18} /> : <Eye size={18} />}
+                </button>
+
+            </div>
+
+            {error && (
+                <p className="text-red-500 text-xs mt-1">
+                    {error}
+                </p>
+            )}
+        </div>
+    );
 }
 
 export default StudentRegister
